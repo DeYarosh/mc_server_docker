@@ -1,2 +1,8 @@
 version: '3'
 
+services:
+  mc_server:
+    image: mc_server
+    container_name: server
+    restart: always
+    
