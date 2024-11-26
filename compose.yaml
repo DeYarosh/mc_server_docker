@@ -3,4 +3,6 @@ services:
     image: mc_server:latest
     container_name: server
     restart: always
+    stdin_open: true
+    tty: true
 
