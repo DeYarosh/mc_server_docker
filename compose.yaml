@@ -1,6 +1,6 @@
 services:
   server:
-    image: mc_server:latest
+    image: paper_server:latest
     ports:
       - 25565:25565
     tty: true
