@@ -1,8 +1,39 @@
+networks:
+  mc_internal:
+    driver: bridge
+
 services:
   server:
+    build:
+      context: .
     image: paper_server:latest
     ports:
       - 25565:25565
+      #- 3306:3306
     tty: true
     stdin_open: true
+    networks:
+      - mc_internal
+    depends_on:
+      - mysql_base
+
+  mysql_base:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: authme
+      MYSQL_USER: authme
+      MYSQL_PASSWORD: '12345'
+    networks:
+      - mc_internal
+    volumes: 
+      - sqlDB:/var/lib/mysql
+
+volumes:
+  sqlDB:
+
+
     
